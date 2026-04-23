@@ -1,0 +1,77 @@
+body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #1e1e2f;
+      color: white;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Левая панель */
+    .sidebar {
+      width: 300px;
+      background: #2a2a40;
+      padding: 20px;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+    }
+
+    .sidebar h2 {
+      margin-bottom: 20px;
+    }
+
+    .function-input {
+      display: flex;
+      gap: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background: #4f46e5;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #6366f1;
+    }
+
+    .functions-list {
+      margin-top: 20px;
+    }
+
+    .func-item {
+      background: #3a3a5a;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .func-item span {
+      font-family: monospace;
+    }
+
+    .delete-btn {
+      background: red;
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+
+    /* График */
+    .graph {
+      flex: 1;
+    }
