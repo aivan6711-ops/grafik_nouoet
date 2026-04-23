@@ -1,0 +1,73 @@
+let functions = [];
+
+function addFunction() {
+  const input = document.getElementById("func");
+  const expr = input.value;
+
+  if (!expr) return;
+
+  functions.push(expr);
+  input.value = "";
+
+  renderList();
+  draw();
+}
+
+function removeFunction(index) {
+  functions.splice(index, 1);
+  renderList();
+  draw();
+}
+
+function renderList() {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+
+  functions.forEach((f, i) => {
+    list.innerHTML += `
+      <div class="func-item">
+        <span>${f}</span>
+        <button class="delete-btn" onclick="removeFunction(${i})">x</button>
+      </div>
+    `;
+  });
+}
+
+function draw() {
+  let traces = [];
+
+  functions.forEach(expr => {
+    let compiled;
+
+    try {
+      compiled = math.compile(expr);
+    } catch {
+      return;
+    }
+
+    let x = [];
+    let y = [];
+
+    for (let i = -10; i <= 10; i += 0.1) {
+      x.push(i);
+      try {
+        y.push(compiled.evaluate({x: i}));
+      } catch {
+        y.push(null);
+      }
+    }
+
+    traces.push({
+      x: x,
+      y: y,
+      type: "scatter",
+      name: expr
+    });
+  });
+
+  Plotly.newPlot("plot", traces, {
+    paper_bgcolor: "#1e1e2f",
+    plot_bgcolor: "#1e1e2f",
+    font: { color: "white" }
+  });
+}
